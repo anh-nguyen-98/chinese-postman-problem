@@ -35,3 +35,5 @@ nx.draw_networkx_nodes(G, pos, node_size=700)
 nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
 plt.axis("off")
 plt.show()
+
+#is eulerian graph
