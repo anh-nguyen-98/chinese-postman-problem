@@ -66,7 +66,28 @@ def get_length_path (G):
     return total_weight
 
 
+#step 2: list of odd-deree vertices:
+def get_odd_degree_list(G): 
+    odd_degree_list = []
+    degree_list = [val for (node, val) in G.degree()]
+        for i in degree_list:
+            if i %2 == 1:
+                odd_degree_list.append(i)
+     return odd_degree_list
+    
+    
 
+#step 3:
+
+#odd_degree_list = (A, B, C, D)
+#=> 3 ways to pair
+#1: A-B, C-D
+
+#2: A-C, B-D
+
+#3: A-D, B-C
+    
+    
     
 #visualize graph with turtle 
 x_coordinates = []
