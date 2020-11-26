@@ -14,8 +14,8 @@ import numpy as np
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-root = tk.Tk()
 
+root = tk.Tk()
 
 filename = "graph 1.csv"
 with open(filename, 'r') as in_file:
@@ -106,19 +106,16 @@ screen._setbgpic(screen._bgpic, photoImage)  # bypass restrictions (protected ac
 turtle = RawTurtle(screen, shape='turtle')
 turtle.shapesize(1)
 
-def route (turtle, x_coordinates, y_coordinates):
+def route (x_coordinates, y_coordinates):
     
-    for x in range(len(x_coordinates)):
+    for i in range(len(x_coordinates)):
+        turtle.pensize(1)
         turtle.pendown()
-        turtle.goto(x_coordinates[x], y_coordinates[x])
+        turtle.speed(3)
+        turtle.goto(int(x_coordinates[i]), int(y_coordinates[i]))
         
-
-
-
-route(turtle, x_coordinates, y_coordinates)
-
+route(x_coordinates, y_coordinates)
 screen.mainloop()
-
 
 
 #plt.show()
