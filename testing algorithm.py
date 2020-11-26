@@ -70,10 +70,10 @@ def get_length_path (G):
 def get_odd_degree_list(G): 
     odd_degree_list = []
     degree_list = [val for (node, val) in G.degree()]
-        for i in degree_list:
-            if i %2 == 1:
-                odd_degree_list.append(i)
-     return odd_degree_list
+    for i in degree_list:
+        if i %2 == 1:
+            odd_degree_list.append(i)
+    return odd_degree_list
     
     
 
@@ -129,20 +129,29 @@ screen = TurtleScreen(canvas)
 screen._setbgpic(screen._bgpic, photoImage)  # bypass restrictions (protected access)
 
 turtle = RawTurtle(screen, shape='turtle')
-turtle.shapesize(4)
+turtle.shapesize(1)
 
-def route (turtle, x_coordinates, y_coordinates):
+"""def route (turtle, x_coordinates, y_coordinates):
     
     for x, y in zip(x_coordinates, y_coordinates):
-        
         turtle.goto(x, y)
+    return turtle
         
 
 
 
-route(turtle, x_coordinates, y_coordinates)
+#route(turtle, x_coordinates, y_coordinates)"""
+"""for x, y in zip(x_coordinates, y_coordinates):
+    turtle.pendown()
+    turtle.goto(x, y)
 
-screen.mainloop()
+screen.mainloop()"""
+
+while True:
+    turtle.forward(200)
+    turtle.left(170)
+    if abs(pos()) < 1:
+        break
 
 
 
