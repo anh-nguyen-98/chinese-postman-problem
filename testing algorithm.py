@@ -74,19 +74,18 @@ def get_odd_degree_list(G):
 pairings = []
 odd_degree_list = get_odd_degree_list(G)
 current_pairing = []
-def pairing_vertex(pairings, odd_degree_list, current_pairing):
+def pairing_vertex(pairings, odd_degree_list):
     if odd_degree_list == []:
-        odd_degree_list.append(current_pairing)
         return odd_degree_list
+    
     first = odd_degree_list[0]
     rest= odd_degree_list[1:]
     for i in range(len(rest)):
-        pair_1 = tuple(zip(first, rest[i]))
-        current_pairing += [pair_1]
-        pairing_vertex(pairings, rest[1], current_pairing)
-        
-    return pairings or pairing_vertex(rest)
+        pairings += list(zip(first, rest[i]))
+    pairing_vertex(pairings, rest)
+    return pairings
 
+pairing_vertex(pairings, odd_degree_list)
 
 
 
