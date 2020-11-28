@@ -1,3 +1,5 @@
+
+
 """
 Discrete math final project
 author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
@@ -71,21 +73,38 @@ def get_odd_degree_list(G):
 #2: A-C, B-D
 
 #3: A-D, B-C
-pairings = []
 odd_degree_list = get_odd_degree_list(G)
-current_pairing = []
-def pairing_vertex(pairings, odd_degree_list):
-    if odd_degree_list == []:
-        return odd_degree_list
+
+len_od_list = len(odd_degree_list)
+
+def pairing_vertex(od_list, ret_list, singular_ord):
+    global len_od_list
     
-    first = odd_degree_list[0]
-    rest= odd_degree_list[1:]
-    for i in range(len(rest)):
-        pairings += list(zip(first, rest[i]))
-    pairing_vertex(pairings, rest)
-    return pairings
-
-pairing_vertex(pairings, odd_degree_list)
-
-
-
+    i = 0
+    while i < len_od_list and od_list[i] == "_":
+        i+=1
+    
+    if i >= len_od_list:
+        ret_list.append([])
+        ret_list[-1] = [sublist.copy() for sublist in singular_ord]
+              
+    else:
+        singular_ord.append([od_list[i]])
+        od_list[i] = "_"
+        for j in range(i+1, len_od_list):
+            if od_list[j] != "_":
+                singular_ord[-1].append(od_list[j])
+                od_list[j] = "_"
+                pairing_vertex(od_list, ret_list, singular_ord)
+                
+                od_list[j] = singular_ord[-1][-1]
+                del singular_ord[-1][-1]
+                
+        od_list[i] = singular_ord[-1][0]
+        del singular_ord[-1]
+    
+    return ret_list
+        
+print(pairing_vertex(odd_degree_list, [], []))
+        
+   
