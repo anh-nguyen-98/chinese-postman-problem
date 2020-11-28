@@ -1,4 +1,5 @@
 
+
 """
 Discrete math final project
 author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
@@ -106,7 +107,4 @@ def pairing_vertex(od_list, ret_list, singular_ord):
         
 print(pairing_vertex(odd_degree_list, [], []))
         
-    
-
-
-
+   
