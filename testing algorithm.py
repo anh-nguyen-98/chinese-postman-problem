@@ -122,6 +122,7 @@ def possible_paths():
         graph[b].append(a)
     return graph
 
+
 with open(filename, 'r') as in_file:
     data = pd.read_csv(filename)
 list_of_rows = [list(row)[1:] for row in data.values]
@@ -193,4 +194,3 @@ g.graph = list_of_rows
 
 g.dijkstra(3)
 
-   
