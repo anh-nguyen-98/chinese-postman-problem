@@ -1,8 +1,8 @@
     
-from dijkstra import Graph
+from graph_shortest_path.dijkstra import Graph
 import pandas as pd
 
-def find_shortest_distances (filename, G):
+def find_shortest_path (filename, G):
     with open(filename, 'r') as in_file:
         data = pd.read_csv(filename)
 
