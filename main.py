@@ -112,16 +112,6 @@ def pairing_vertex(od_list, ret_list, singular_ord):
 #print(pairing_vertex(odd_degree_list, [], []))
         
 
-def possible_paths():
-    edges = G.edges()
-    graph = defaultdict(list)
-    #print(edges)
-    for edge in edges:
-        a, b = edge[0], edge[1]
-        graph[a].append(b)
-        graph[b].append(a)
-    return graph
-
 
 with open(filename, 'r') as in_file:
     data = pd.read_csv(filename)
