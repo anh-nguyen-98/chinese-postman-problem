@@ -1,6 +1,6 @@
 """
 turtle combine with graph
-author: cdlane (stackoverflow)
+author: cdlane (stackover)
 """
 
 import tkinter as tk
