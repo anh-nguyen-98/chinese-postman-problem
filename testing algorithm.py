@@ -130,7 +130,8 @@ print(list_of_rows)
 class Graph(): 
   
     def __init__(self, vertices): 
-        self.V = vertices 
+        self.V = vertices
+        print(self.V)
         self.graph = [[0 for column in range(vertices)]  
                     for row in range(vertices)] 
   
@@ -191,5 +192,5 @@ g = Graph(5)
 
 g.graph = list_of_rows 
 
-g.dijkstra(3)
+g.dijkstra(0)
 
