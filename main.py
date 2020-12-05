@@ -42,10 +42,10 @@ def main():
 
         print("\nshortest pairing: " )
         print(pairings[shortest_pairing])
-
-
-
-
+        G.add_edges_from(pairings[shortest_pairing])
+        print(G.edges.data())
+    else:
+        print(G.edges.data())
 
 
 
