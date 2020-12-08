@@ -44,6 +44,8 @@ class Graph():
         dist = [sys.maxsize] * self.V
         dist[src] = 0
         sptSet = [False] * self.V
+        path = []
+        
 
         for cout in range(self.V):
 
@@ -51,10 +53,12 @@ class Graph():
             # the set of vertices not yet processed.
             # u is always equal to src in first iteration
             u = self.minDistance(dist, sptSet)
+            
 
             # Put the minimum distance vertex in the
             # shotest path tree
             sptSet[u] = True
+            path.append([u])
 
             # Update dist value of the adjacent vertices
             # of the picked vertex only if the current
@@ -64,7 +68,7 @@ class Graph():
                 if self.graph[u][v] > 0 and sptSet[v] == False and dist[v] > dist[u] + self.graph[u][v]:
                     dist[v] = dist[u] + self.graph[u][v]
 
-        return dist
+        return dist, path 
 
     def length_from_source(self):
         distance = []
@@ -73,17 +77,21 @@ class Graph():
 
         print(distance)
         return distance
+    
+    #def path(self):
+        #paths = list of paths from rach
+        #[[0, 2, 1], [1, 2, 3], []]
 
     # Driver program
+"""
+filename = "graph 1.csv"
+with open(filename, 'r') as in_file:
+     data = pd.read_csv(filename)
+list_of_rows = [list(row)[1:] for row in data.values]
 
-# filename = "graph 1.csv"
-# with open(filename, 'r') as in_file:
-#     data = pd.read_csv(filename)
-# list_of_rows = [list(row)[1:] for row in data.values]
-#
-# g = Graph(5)
-#
-# g.graph = list_of_rows
-#
-# g.length_from_source()
+g = Graph(8)
 
+g.graph = list_of_rows
+
+g.length_from_source()
+"""
