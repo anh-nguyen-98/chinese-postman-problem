@@ -6,6 +6,8 @@ import check_eulerian
 import graph
 
 from graph_shortest_path.main import find_shortest_path
+from graph_shortest_path.main import find_shortest_distance
+from shortest_pairing import previous_vertex
 from odd_degree_pairing import get_odd_degree_list, pairing_vertex
 from shortest_pairing import find_shortest_pairing
 
@@ -34,7 +36,7 @@ def main():
         print("Pairings: ")
         print(pairings)
 
-        distances = find_shortest_path(filename, G)
+        distances = find_shortest_distance(filename, G)
         print("Shortest distances from each source node to other nodes: ")
         print(distances)
 
@@ -45,6 +47,11 @@ def main():
         print(pairings[shortest_pairing])
         G.add_edges_from(pairings[shortest_pairing])
         print(G.edges.data())
+        
+        path = find_shortest_path(filename, G)
+        print(path)
+        
+        previous_vertex(G, pairings, distances)
     else:
         print(G.edges.data())
 

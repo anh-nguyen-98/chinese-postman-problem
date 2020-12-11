@@ -1,6 +1,8 @@
 """
 
 """
+from graph_shortest_path.main import find_shortest_path
+
 def find_node_ids(G):
     node_ids = {}
     i = 0
@@ -29,4 +31,36 @@ def find_shortest_pairing (G, pairings, distance):
             ret = i
 
     return ret
-
+    
+def previous_vertex(G, pairings, distance):
+    node_ids = find_node_ids(G)
+    shortest_pairing = find_shortest_pairing(G, pairings, distance)
+    path  = find_shortest_path('graph 1.csv', G)
+    
+    previous_vertices = []
+    for sub_pair in pairings[shortest_pairing]:
+        src = node_ids.get(sub_pair[0])
+        des = node_ids.get(sub_pair[1])
+        pair_path = path[src]
+        
+        src_to_des = []
+        src_to_des.append(des)
+        while src_to_des[0] != src: 
+            prev = pair_path[src_to_des[0]]
+            src_to_des.insert(0, prev)
+        
+        
+        previous_vertices.append(src_to_des)
+    print(previous_vertices)
+    
+    for i in range(len(previous_vertices)):
+        for j in range(len(previous_vertices[i])):
+            for keys in node_ids:
+                if node_ids[keys] == previous_vertices[i][j]:
+                    previous_vertices[i][j] = keys
+    print(previous_vertices)
+            
+    
+    
+    
+    

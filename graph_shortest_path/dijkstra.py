@@ -69,26 +69,32 @@ class Graph():
                     dist[v] = dist[u] + self.graph[u][v]
                     path[v] = u
 
-        return dist, path 
+        return dist, path
 
     def length_from_source(self):
         distance = []
         for i in range(self.V):
-            distance.append(self.dijkstra(i))
+            distance.append(self.dijkstra(i)[0])
         return distance
     
-    #def path(self):
-        #paths = list of paths from rach
-        #[[0, 2, 1], [1, 2, 3], []]
+    def path(self):
+        path = []
+        for i in range(self.V):
+            path.append(self.dijkstra(i)[1])
+        return path
+        
+        
+        
+        
 
     # Driver program
-filename = "graph 1.csv"
-with open(filename, 'r') as in_file:
-    data = pd.read_csv(filename)
-list_of_rows = [list(row)[1:] for row in data.values]
-
-g = Graph(8)
-
-g.graph = list_of_rows
-
-g.length_from_source()
+# filename = "graph 1.csv"
+# with open(filename, 'r') as in_file:
+#     data = pd.read_csv(filename)
+# list_of_rows = [list(row)[1:] for row in data.values]
+# 
+# g = Graph(8)
+# 
+# g.graph = list_of_rows
+# 
+# g.length_from_source()
