@@ -1,2 +1,0 @@
-# chinese-postman-problem
-
