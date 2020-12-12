@@ -1,7 +1,31 @@
 """
 
 """
-from graph_shortest_path.main import find_shortest_path
+
+from graph_shortest_path.dijkstra import Graph
+import pandas as pd
+
+
+def find_shortest_distance(filename, G):
+    with open(filename, 'r') as in_file:
+        data = pd.read_csv(filename)
+
+    list_of_rows = [list(row)[1:] for row in data.values]
+    g = Graph(len(G.nodes))
+    g.graph = list_of_rows
+    distances = g.length_from_source()
+    return distances
+
+
+def find_shortest_path(filename, G):
+    with open(filename, 'r') as in_file:
+        data = pd.read_csv(filename)
+
+    list_of_rows = [list(row)[1:] for row in data.values]
+    g = Graph(len(G.nodes))
+    g.graph = list_of_rows
+    path = g.path()
+    return path
 
 def find_node_ids(G):
     node_ids = {}
@@ -32,10 +56,10 @@ def find_shortest_pairing (G, pairings, distance):
 
     return ret
     
-def previous_vertex(G, pairings, distance):
+def previous_vertex(G, pairings, distance, filename):
     node_ids = find_node_ids(G)
     shortest_pairing = find_shortest_pairing(G, pairings, distance)
-    path  = find_shortest_path('graph 1.csv', G)
+    path  = find_shortest_path(filename, G)
     
     previous_vertices = []
     for sub_pair in pairings[shortest_pairing]:

@@ -5,11 +5,11 @@ author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 import check_eulerian
 import graph
 
-from graph_shortest_path.main import find_shortest_path
-from graph_shortest_path.main import find_shortest_distance
-from shortest_pairing import previous_vertex
-from odd_degree_pairing import get_odd_degree_list, pairing_vertex
-from shortest_pairing import find_shortest_pairing
+from graph_shortest_path.shortest_pairing import find_shortest_path
+from graph_shortest_path.shortest_pairing import find_shortest_distance
+from graph_shortest_path.shortest_pairing import previous_vertex
+from graph_shortest_path.odd_degree_pairing import get_odd_degree_list, pairing_vertex
+from graph_shortest_path.shortest_pairing import find_shortest_pairing
 
 """
     Accomplishments so far:
@@ -21,9 +21,6 @@ from shortest_pairing import find_shortest_pairing
         possible pairing between odd degree vertices
         Dijkstra
 """
-import networkx as nx
-import pandas as pd
-import sys
 
 
 def main():
@@ -49,7 +46,7 @@ def main():
         path = find_shortest_path(filename, G)
         print(path)
         
-        previous_vertices = previous_vertex(G, pairings, distances)
+        previous_vertices = previous_vertex(G, pairings, distances, filename)
         new_edges = []
         for i in range(len(previous_vertices)):
             new_edges = list(zip(previous_vertices[i], previous_vertices[i][1:]))
