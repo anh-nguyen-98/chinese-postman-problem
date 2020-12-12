@@ -59,7 +59,7 @@ def previous_vertex(G, pairings, distance):
                 if node_ids[keys] == previous_vertices[i][j]:
                     previous_vertices[i][j] = keys
     print(previous_vertices)
-            
+    return previous_vertices       
     
     
     

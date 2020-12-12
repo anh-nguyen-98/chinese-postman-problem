@@ -45,13 +45,20 @@ def main():
 
         print("\nshortest pairing: ")
         print(pairings[shortest_pairing])
-        G.add_edges_from(pairings[shortest_pairing])
-        print(G.edges.data())
         
         path = find_shortest_path(filename, G)
         print(path)
         
-        previous_vertex(G, pairings, distances)
+        previous_vertices = previous_vertex(G, pairings, distances)
+        new_edges = []
+        for i in range(len(previous_vertices)):
+            new_edges = list(zip(previous_vertices[i], previous_vertices[i][1:]))
+        print(new_edges)
+        for edge in new_edges:
+            if edge in G.edges:
+                G.add_edge(edge[0], edge[1])
+                G[edge[0]][edge[1]][1]['weight'] = G[edge[0]][edge[1]][0]['weight']
+        print(G.edges.data())
     else:
         print(G.edges.data())
 
