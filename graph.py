@@ -23,11 +23,13 @@ def retrieve_graph(filename):
     # positions for all nodes
     pos = nx.spring_layout(G)
     # nodes
-    #nx.draw_networkx_nodes(G, pos, node_size=700)
-    # edges
-    #nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
-    #nx.draw(G, with_labels = True)
-    #plt.axis("off")
-    #plt.savefig("our_graph.png")
-    #plt.show()
+    # nx.draw_networkx_nodes(G, pos, node_size=700)
+    # # edges
+    # nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
+    # nx.draw(G, with_labels = True)
+    # plt.axis("off")
+    # plt.savefig("our_graph.png")
+    # plt.show()
     return G
+
+retrieve_graph('graph 1.csv')

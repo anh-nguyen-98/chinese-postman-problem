@@ -2,15 +2,23 @@
 Discrete math final project
 author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 """
+import networkx as nx
+import matplotlib.pyplot as plt
+from pandas.core.indexes import multi
+from networkx.drawing.nx_agraph import write_dot
+
 import check_eulerian
 import graph
+import  graphviz
+import pydot
+from networkx.drawing.nx_pydot import write_dot
 
 from graph_shortest_path.shortest_pairing import find_shortest_path
 from graph_shortest_path.shortest_pairing import find_shortest_distance
 from graph_shortest_path.shortest_pairing import previous_vertex
 from graph_shortest_path.odd_degree_pairing import get_odd_degree_list, pairing_vertex
 from graph_shortest_path.shortest_pairing import find_shortest_pairing
-
+from visualize_graph import get_coordinates
 """
     Accomplishments so far:
         read csv file for graph data
@@ -55,11 +63,25 @@ def main():
             if edge in G.edges:
                 G.add_edge(edge[0], edge[1])
                 G[edge[0]][edge[1]][1]['weight'] = G[edge[0]][edge[1]][0]['weight']
-        print(G.edges.data())
+
+        # Cach 1: not work
+        # pos = nx.spring_layout(G)
+        # # nodes
+        # # nx.draw_networkx_nodes(G, pos, node_size=700)
+        # # # edges
+        # # nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
+        # nx.draw(G, with_labels=True)
+        # plt.axis("off")
+        # plt.savefig("our_graph.png")
+        # plt.show()
+        # print(G.edges.data())
+
     else:
         print(G.edges.data())
 
     # visualize_graph
 
+    print ("\n New test: ")
+    print(get_coordinates(G))
 
 main()

@@ -1,0 +1,26 @@
+graph  {
+A;
+B;
+C;
+D;
+E;
+F;
+G;
+H;
+A -- B  [key=0, weight=50];
+A -- B  [key=1, weight=50];
+A -- C  [key=0, weight=50];
+A -- D  [key=0, weight=50];
+B -- D  [key=0, weight=50];
+B -- E  [key=0, weight=70];
+B -- F  [key=0, weight=50];
+B -- F  [key=1, weight=50];
+C -- D  [key=0, weight=70];
+C -- G  [key=0, weight=70];
+C -- H  [key=0, weight=120];
+D -- F  [key=0, weight=60];
+E -- F  [key=0, weight=70];
+F -- H  [key=0, weight=60];
+F -- H  [key=1, weight=60];
+G -- H  [key=0, weight=70];
+}
