@@ -83,10 +83,7 @@ def main():
 
     # visualize_graph
 
-    print ("\n New test: ")
-    # print(get_coordinates(G))
-
-    track_route(G)
+    print (track_route(G))
 
 
 main()

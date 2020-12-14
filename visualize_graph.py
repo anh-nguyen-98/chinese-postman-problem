@@ -14,7 +14,6 @@ import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-
 # root = tk.Tk()
 #
 #
@@ -62,16 +61,11 @@ from matplotlib.figure import Figure
 from graph_shortest_path.shortest_pairing import find_node_ids
 
 
-def track_route (G):
-    #input: edges
-    #degree list ()
-    #visited edges
-    #output: order of vertices visited
-
-    #algorithm: DFS. once vertex has no outgoing edge, put to front of route > backtrack
+def track_route(G):
     n = len(G.nodes)
-    incidence_mx = np.zeros((n, n), dtype=int)
 
+    # construct incidence matrix (nxn): entry(i, j): occureences of edge (i, j)
+    incidence_mx = np.zeros((n, n), dtype=int)
     node_ids = find_node_ids(G)
     for e in G.edges:
         u = node_ids.get(e[0])
@@ -79,58 +73,33 @@ def track_route (G):
         incidence_mx[u][v] += 1
         incidence_mx[v][u] += 1
 
-    m = len(G.edges)
-    degree_arr = [node[1] for node in G.degree]
-    route = []
-    track_route_helper(route, incidence_mx, degree_arr, m, 0)
-    print ('result: ')
-    ids = "ABCDEFGH"
-    ret = ''
-    for i in route:
-        ret += ids[i]
-    print (ret)
+    #track route recursively
+    route = track_route_helper([], incidence_mx, 0)
+
+    #map int vertex back to str vertex
+    int_to_str = list(G.nodes)
+    for i in range(len(route)):
+        route[i] = int_to_str[route[i]]
+
+    return route
 
 
 
-def track_route_helper(route, incidence_mx, degree_arr, m, v):
-    #base case:
-    if m == 0:
-        return
-
-    # recursive
-    print ('v: ' + str(v))
-    print('degree[v]: ' + str(degree_arr[v]))
-    while degree_arr[v] > 0:
-        nxt = find_nxt(v, incidence_mx)
-        print ('next'+ str(nxt))
+def track_route_helper(route, incidence_mx, v):
+    nxt = find_nxt(v, incidence_mx)
+    while nxt != -1:
         incidence_mx[v][nxt] -= 1
         incidence_mx[nxt][v] -= 1
-        degree_arr[v] -= 1
-        degree_arr[nxt] -= 1
-        track_route_helper(route, incidence_mx, degree_arr, m-1, nxt)
+        track_route_helper(route, incidence_mx, nxt)
+        nxt = find_nxt(v, incidence_mx)
 
     route.insert(0, v)
-    print ('route' )
-    print(route)
-    return
+    return route
 
 
-
-
-
-def find_nxt (v, incidence_mx):
-    print(incidence_mx.shape[0])
+def find_nxt(v, incidence_mx):
     for i in range(incidence_mx.shape[0]):
         if incidence_mx[v][i] > 0:
             return i
 
     return -1
-
-
-
-
-
-
-
-
-
