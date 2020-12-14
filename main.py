@@ -18,7 +18,9 @@ from graph_shortest_path.shortest_pairing import find_shortest_distance
 from graph_shortest_path.shortest_pairing import previous_vertex
 from graph_shortest_path.odd_degree_pairing import get_odd_degree_list, pairing_vertex
 from graph_shortest_path.shortest_pairing import find_shortest_pairing
-from visualize_graph import get_coordinates
+# from visualize_graph import get_coordinates
+from visualize_graph import track_route
+
 """
     Accomplishments so far:
         read csv file for graph data
@@ -82,6 +84,11 @@ def main():
     # visualize_graph
 
     print ("\n New test: ")
-    print(get_coordinates(G))
+    # print(get_coordinates(G))
+
+    track_route(G)
+
 
 main()
+
+

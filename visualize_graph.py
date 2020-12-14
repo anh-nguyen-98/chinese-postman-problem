@@ -59,68 +59,72 @@ from matplotlib.figure import Figure
 # route(turtle, x_coordinates, y_coordinates)
 #
 # screen.mainloop()
+from graph_shortest_path.shortest_pairing import find_node_ids
 
-def get_coordinates(G):
-    edges = []
-    for e in G.edges():
-        s = set()
-        for v in e:
-            s.add(v)
-        edges.append(s)
-    print (edges)
-    # pos = nx.spring_layout(G)
 
-    # xy_pos = []
-    #
-    # e1 = edges.pop(0)
-    # xy_pos.append(pos[e1[0]])
-    # xy_pos.append(pos[e1[1]])
-    #
-    # while edges:
-    #     for i in edges:
-    #         if e1[1] in i:
-    #             v = e1[1]
-    #             e1 = edges.remove(i)
-    #             for vertex in e1:
-    #                 if vertex != v:
-    #                     xy_pos.append(pos[vertex])
-    #
-    #
-    #
-    # print(xy_pos)
+def track_route (G):
+    #input: edges
+    #degree list ()
+    #visited edges
+    #output: order of vertices visited
 
-    ordered_vertices = []
-    # edges = set(G.edges())
-    #edges: list of set
-    e1 = edges.pop(0)
+    #algorithm: DFS. once vertex has no outgoing edge, put to front of route > backtrack
+    n = len(G.nodes)
+    incidence_mx = np.zeros((n, n), dtype=int)
 
-    for v in e1:
-        ordered_vertices.append(v)
+    node_ids = find_node_ids(G)
+    for e in G.edges:
+        u = node_ids.get(e[0])
+        v = node_ids.get(e[1])
+        incidence_mx[u][v] += 1
+        incidence_mx[v][u] += 1
 
-    last_visited = ordered_vertices[-1]
-    while edges != []:
-        e1_id = find_edge_containing_vertex(last_visited, edges)
-        e1 = edges[e1_id]
-        print(e1)
-
-        e1.remove(last_visited)
-        last_visited = e1.pop()
-        ordered_vertices.append(last_visited)
-        edges.pop(e1_id)
-        print(edges)
-        print()
-
-    return ordered_vertices
+    m = len(G.edges)
+    degree_arr = [node[1] for node in G.degree]
+    route = []
+    track_route_helper(route, incidence_mx, degree_arr, m, 0)
+    print ('result: ')
+    ids = "ABCDEFGH"
+    ret = ''
+    for i in route:
+        ret += ids[i]
+    print (ret)
 
 
 
+def track_route_helper(route, incidence_mx, degree_arr, m, v):
+    #base case:
+    if m == 0:
+        return
+
+    # recursive
+    print ('v: ' + str(v))
+    print('degree[v]: ' + str(degree_arr[v]))
+    while degree_arr[v] > 0:
+        nxt = find_nxt(v, incidence_mx)
+        print ('next'+ str(nxt))
+        incidence_mx[v][nxt] -= 1
+        incidence_mx[nxt][v] -= 1
+        degree_arr[v] -= 1
+        degree_arr[nxt] -= 1
+        track_route_helper(route, incidence_mx, degree_arr, m-1, nxt)
+
+    route.insert(0, v)
+    print ('route' )
+    print(route)
+    return
 
 
-def find_edge_containing_vertex (vertex, edges):
-    for i in range(len(edges)):
-        if vertex in edges[i]:
+
+
+
+def find_nxt (v, incidence_mx):
+    print(incidence_mx.shape[0])
+    for i in range(incidence_mx.shape[0]):
+        if incidence_mx[v][i] > 0:
             return i
 
+    return -1
 
 
 
