@@ -1,7 +1,16 @@
 """
+The module deals with odd-degree vertex list retrieve and pairing.
 
+author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 """
 import graph
+
+
+"""
+Param: (Nx. Multigraph) G
+
+Returns list of odd-degree vertex
+"""
 
 
 def get_odd_degree_list(G):
@@ -12,7 +21,14 @@ def get_odd_degree_list(G):
             odd_degree_list.append(i[0])
     return odd_degree_list
 
-
+"""
+Param:  (ls) od_list: list of all odd-degree vertices
+        (ls) ret_list: list of all possible pairings (combinations) of odd-degree vertices 
+        (ls) singular_ord: being-built pairing (combination) 
+        (int) len_od_list: length odd-degree vertice list 
+                
+returns (ls) list of all possible pairings (combinations) of odd-degree vertices
+"""
 
 
 def pairing_vertex(od_list, ret_list, singular_ord, len_od_list):

@@ -1,11 +1,22 @@
 """
+The module constructs a Multigraph object (Networkx) from
+adjacency matrix (csv).
 
+author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 """
 import networkx as nx
 import pandas as pd
 import turtle
 import matplotlib.pyplot as plt
 from visualize_graph import track_route
+
+"""
+Param:  (str) csv file path storing graph adjacency matrix. 
+        Entry (i, j) in matrix stores weight of edge {i, j}. 
+
+Returns a Multigraph object (Networkx) with data 
+for nodes, weighted edges
+"""
 
 
 def retrieve_graph(filename):
@@ -16,22 +27,9 @@ def retrieve_graph(filename):
     G.add_nodes_from(data.columns[1:])
 
     for row in data.index.array:
-        for col in data.columns[row+1:]:
-            #data = data.fillna(0)
+        for col in data.columns[row + 1:]:
+            # data = data.fillna(0)
             if data.iloc[row][col] != 0:
                 G.add_edge(data.iloc[row][0], col, weight=data.iloc[row][col])
-    # positions for all nodes
-    
-    pos = nx.spring_layout(G)
-    
-    # nodes
-#     nx.draw_networkx_nodes(G, pos, node_size=700)
-    # edges
-#     nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
-    nx.draw(G, with_labels = True)
-    plt.axis("off")
-    plt.savefig("our_graph.png")
-#     plt.show()
     return G
 
-retrieve_graph('graph 1.csv')

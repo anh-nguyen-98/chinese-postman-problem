@@ -1,66 +1,59 @@
 """
-Visualize graph
+The module visualizes the shortest route through all edges in graph using Python turtle.
+
+author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
+"""
+import turtle
+import networkx as nx
+import numpy as np
+from graph_shortest_path.shortest_pairing import find_node_ids
+
 """
 
-# visualize graph with turtle
-import tkinter as tk
-from io import BytesIO
-from turtle import TurtleScreen, RawTurtle
-
-import networkx as nx
-from PIL import Image, ImageTk
-import numpy as np
-
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-
-# root = tk.Tk()
-#
-#
-# x_coordinates = []
-# y_coordinates = []
-# for i in pos.keys():
-#     x_coordinates += [pos[i][0]]
-#     y_coordinates += [pos[i][1]]
-#
-# # Plot graph
-# figure = Figure(figsize=(5, 5))
-# subplot = figure.add_subplot(111)
-# x = np.array(x_coordinates)
-# y = np.array(y_coordinates)
-# subplot.plot(x, y)
-#
-# # Make memory image of graph
-# invisible_figure_canvas = FigureCanvasTkAgg(figure, root)
-# buffer = BytesIO()
-# figure.savefig(buffer, format="png")
-# buffer.seek(0)
-#
-# # Open memory as tkinter image
-# image = Image.open(buffer)
-# photoImage = ImageTk.PhotoImage(image)
-# buffer.close()
-#
-# # Now do our turtle drawing embedded in tkinter
-# canvas = tk.Canvas(root, width=500, height=500)
-# canvas.pack()
-#
-# screen = TurtleScreen(canvas)
-# screen._setbgpic(screen._bgpic, photoImage)  # bypass restrictions (protected access)
-#
-# turtle = RawTurtle(screen, shape='turtle')
-# turtle.shapesize(4)
-#
-# def route (turtle, x_coordinates, y_coordinates):
-#     for x, y in zip(x_coordinates, y_coordinates):
-#         turtle.goto(x, y)
-#
-# route(turtle, x_coordinates, y_coordinates)
-#
-# screen.mainloop()
+Param: G(Nx Multigraph) graph (edges already modified for non-eulerian)
+Returns a visualization of the shortest route through all edges in graph using Python turtle.
+"""
 
 
-from graph_shortest_path.shortest_pairing import find_node_ids
+def visualize_route(G):
+    pos = nx.spring_layout(G)
+    visited = []
+    coordinates = []
+    route = track_route(G)
+    for nodes in route:
+        coordinates += [list(pos[nodes])]
+        turtle.shape('turtle')
+        turtle.penup()
+        turtle.goto(coordinates[0][0] * 300, coordinates[0][1] * 300)
+    for i in range(len(coordinates)):
+        turtle.pendown()
+        turtle.color('black')
+        turtle.stamp()
+        turtle.goto(coordinates[i][0] * 300, coordinates[i][1] * 300)
+
+    for i in range(1, len(coordinates)):
+        edge = list(zip(route[i], route[i - 1]))
+        if edge[0] in visited or edge[0][::-1] in visited:
+            turtle.pendown()
+            turtle.color('red')
+            turtle.speed('slowest')
+            turtle.stamp()
+            turtle.pensize(3)
+            turtle.goto(coordinates[i][0] * 300, coordinates[i][1] * 300)
+        else:
+            turtle.pendown()
+            turtle.color('blue')
+            turtle.speed('slowest')
+            turtle.stamp()
+            turtle.pensize(3)
+            turtle.goto(coordinates[i][0] * 300, coordinates[i][1] * 300)
+            visited += edge
+
+
+"""
+Param: G (Nx Multigraph) graph (edges already modified for non-eulerian)
+Returns the (ls) ordering of vertices & edges for turtle to visit
+"""
 
 
 def track_route(G):
@@ -75,18 +68,23 @@ def track_route(G):
         incidence_mx[u][v] += 1
         incidence_mx[v][u] += 1
 
-    #track route recursively
+    # track route recursively
     route = track_route_helper([], incidence_mx, 0)
 
-    #map int vertex back to str vertex
+    # map int vertex back to str vertex
     int_to_str = list(G.nodes)
     for i in range(len(route)):
         route[i] = int_to_str[route[i]]
 
     return route
 
+"""
+Helper method for track_route 
 
-
+@:parameter route: returned route
+            incidenece_mx: matrix keeing the number of unvisited edge 
+            v: vertex
+"""
 def track_route_helper(route, incidence_mx, v):
     nxt = find_nxt(v, incidence_mx)
     while nxt != -1:
@@ -99,6 +97,13 @@ def track_route_helper(route, incidence_mx, v):
     return route
 
 
+"""
+Helper method for track_route_helper
+
+@:parameter: v: vertex 
+             incidence_mx: matrix keeing the number of unvisited edge 
+Returns the next unvisited edge from a vertex v 
+"""
 def find_nxt(v, incidence_mx):
     for i in range(incidence_mx.shape[0]):
         if incidence_mx[v][i] > 0:
