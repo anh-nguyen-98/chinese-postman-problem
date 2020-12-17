@@ -8,6 +8,7 @@ from pandas.core.indexes import multi
 from networkx.drawing.nx_agraph import write_dot
 
 import check_eulerian
+import turtle
 import graph
 import  graphviz
 import pydot
@@ -36,6 +37,7 @@ from visualize_graph import track_route
 def main():
     filename = "graph 1.csv"
     G = graph.retrieve_graph(filename)
+    pos = nx.spring_layout(G)
     if not check_eulerian.is_eulerian(G):
         # odd-degree
         odd_degree_list = get_odd_degree_list(G)
@@ -66,25 +68,55 @@ def main():
                 G.add_edge(edge[0], edge[1])
                 G[edge[0]][edge[1]][1]['weight'] = G[edge[0]][edge[1]][0]['weight']
 
-        # Cach 1: not work
-        # pos = nx.spring_layout(G)
+        visited = []
+        coordinates = []
+        route = track_route(G)
+        for nodes in route:
+            coordinates += [list(pos[nodes])]
+        turtle.shape('turtle')
+        turtle.penup()
+        turtle.goto(coordinates[0][0]*300, coordinates[0][1]*300)
+        for i in range(len(coordinates)):
+            turtle.pendown()
+            turtle.color('black')
+            turtle.stamp()
+            turtle.goto(coordinates[i][0]*300, coordinates[i][1]*300)
+        
+        for i in range(1, len(coordinates)):
+            edge = list(zip(route[i], route[i-1]))
+            if edge[0] in visited or edge[0][::-1] in visited:
+                turtle.pendown()
+                turtle.color('red')
+                turtle.speed('slowest')
+                turtle.stamp()
+                turtle.pensize(3)
+                turtle.goto(coordinates[i][0]*300, coordinates[i][1]*300)
+            else:
+                turtle.pendown()
+                turtle.color('blue')
+                turtle.speed('slowest')
+                turtle.stamp()
+                turtle.pensize(3)
+                turtle.goto(coordinates[i][0]*300, coordinates[i][1]*300)
+                visited += edge
+        print(visited)      
         # # nodes
         # # nx.draw_networkx_nodes(G, pos, node_size=700)
         # # # edges
         # # nx.draw_networkx_edges(G, pos, edgelist=G.edges, width=6)
-        # nx.draw(G, with_labels=True)
+#         nx.draw(G, with_labels=True)
         # plt.axis("off")
         # plt.savefig("our_graph.png")
-        # plt.show()
-        # print(G.edges.data())
+#         plt.show()
+#         print(G.edges())
 
     else:
         print(G.edges.data())
 
     # visualize_graph
 
-    print (track_route(G))
-
+    
+        
 
 main()
 
