@@ -4,7 +4,7 @@ This module deals with retrieving the shortest distance/ path among nodes in gra
 author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 """
 
-from graph_shortest_path.dijkstra import Graph
+from dijkstra import Graph
 import pandas as pd
 
 """
@@ -76,14 +76,13 @@ def previous_vertex(G, pairings, distance, filename):
             src_to_des.insert(0, prev)
 
         previous_vertices.append(src_to_des)
-    print(previous_vertices)
 
     for i in range(len(previous_vertices)):
         for j in range(len(previous_vertices[i])):
             for keys in node_ids:
                 if node_ids[keys] == previous_vertices[i][j]:
                     previous_vertices[i][j] = keys
-    print(previous_vertices)
+
     return previous_vertices
 
 

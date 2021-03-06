@@ -13,11 +13,6 @@ class Graph():
         self.graph = [[0 for column in range(vertices)]
                       for row in range(vertices)]
 
-    def printSolution(self, dist):
-        print("Vertex \t Distance from Source")
-        for node in range(self.V):
-            print(node, "\t", dist[node])
-
     # A utility function to find the vertex with
     # minimum distance value, from the set of vertices
     # not yet included in shortest path tree
@@ -87,14 +82,4 @@ class Graph():
         
         
 
-    # Driver program
-# filename = "graph 1.csv"
-# with open(filename, 'r') as in_file:
-#     data = pd.read_csv(filename)
-# list_of_rows = [list(row)[1:] for row in data.values]
-# 
-# g = Graph(8)
-# 
-# g.graph = list_of_rows
-# 
-# g.length_from_source()
+
