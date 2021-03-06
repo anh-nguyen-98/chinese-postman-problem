@@ -1,8 +1,6 @@
-# Chinese Postman Problem 
+# Chinese Postman Problem (aka. Eulerian tour finding)
 
-Another name: Eulerian tour finding 
-
-Chinese Postman Problem is the visualization of the shortest route to cover all edges in a graph.
+Chinese Postman Problem is a project that visualizes the shortest route to cover all edges in a graph. 
 
 Here is the original problem statement : 
 
