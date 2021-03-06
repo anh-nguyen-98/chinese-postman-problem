@@ -1,6 +1,6 @@
 """
 Discrete math final project
-The program finds the shortest path to visit all edges of a graph
+The program finds the shortest walk to visit all edges of a graph
 and uses Python turtle to visualize.
 (Solution to Chinese Postman Problem)
 
@@ -26,12 +26,17 @@ from graph_shortest_path.shortest_pairing import find_shortest_pairing
 # from visualize_graph import get_coordinates
 from visualize_graph import track_route, visualize_route
 
-"""Main method"""
+"""
+Returns the shortest walk on the graph. 
+
+:param: (str) name of the excel file that stores a graph. 
+   
+"""
 
 
-def main():
+def get_shortest_walk (filename):
     # retrieves graph from csv
-    filename = "graph 1.csv"
+    # filename = "graph 1.csv"
     G = graph.retrieve_graph(filename)
 
     # deals with non-eulerian graph:
@@ -66,5 +71,3 @@ def main():
     # visualize shortest route with turtle
     visualize_route(G)
 
-
-main()
