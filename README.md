@@ -27,6 +27,7 @@ git clone https://github.com/anh-nguyen-98/chinese-postman-problem.git
   - cell values are non-negative weight of the respective edges
    
 Example:
+
 ![graph input](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/graph.jpg)
 
 2. Run file *shortest_walk_client.py* in your editor 
@@ -42,12 +43,12 @@ Example:
   * Blue edge: edge visited once only 
   * Red edge: edge visited more than once
 
-a. Example of a being-built tour: 
+  a. Example of a being-built tour: 
 
 ![being built tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/building%20tour.jpg)
 
 
-b. Example of a complete tour: 
+  b. Example of a complete tour: 
 
 ![complete tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/complete%20tour.jpg)
 
