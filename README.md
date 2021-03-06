@@ -11,27 +11,27 @@ Chinese Postman Problem aims to find a shortest closed walk of the weighted grap
   *  Arc routing problems: Waste collection, snow plowing, postal delivery route design
 
 ## Installation  
-- Install a Python editor (e.g. Pycharm, Visual Studio Code, Thonny)
-- Clone the project at: 
+1. Install a Python editor (e.g. Pycharm, Visual Studio Code, Thonny)
+2. Clone the project at: 
 
 ```
 git clone https://github.com/anh-nguyen-98/chinese-postman-problem.git
 ```
-- Open the project with the existing editor
+3. Open the project with the existing editor
 
 
 ## Usage 
 
-- Input your weighted graph's incidence matrix in a .csv file where: 
+1. Input your weighted graph's incidence matrix in a .csv file where: 
   - column and row names are vertices
   - cell values are non-negative weight of the respective edges
    
 Example:
 ![graph input](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/graph.jpg)
 
-- Run file *shortest_walk_client.py* in your editor 
+2. Run file *shortest_walk_client.py* in your editor 
 
-- Enter the name of your graph (.csv) in console: 
+3. Enter the name of your graph (.csv) in console: 
 
 Example:
 ![console](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/input.jpg)
@@ -42,11 +42,12 @@ Example:
   * Blue edge: edge visited once only 
   * Red edge: edge visited more than once
 
-Example of a being-built tour: 
+a. Example of a being-built tour: 
 
 ![being built tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/building%20tour.jpg)
 
-Example of a complete tour: 
+
+b. Example of a complete tour: 
 
 ![complete tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/complete%20tour.jpg)
 
