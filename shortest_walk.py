@@ -18,11 +18,11 @@ import graphviz
 import pydot
 from networkx.drawing.nx_pydot import write_dot
 
-from graph_shortest_path.shortest_pairing import find_shortest_path
-from graph_shortest_path.shortest_pairing import find_shortest_distance
-from graph_shortest_path.shortest_pairing import previous_vertex
-from graph_shortest_path.odd_degree_pairing import get_odd_degree_list, pairing_vertex
-from graph_shortest_path.shortest_pairing import find_shortest_pairing
+from shortest_pairing import find_shortest_path
+from shortest_pairing import find_shortest_distance
+from shortest_pairing import previous_vertex
+from odd_degree_pairing import get_odd_degree_list, pairing_vertex
+from shortest_pairing import find_shortest_pairing
 # from visualize_graph import get_coordinates
 from visualize_graph import track_route, visualize_route
 
@@ -36,7 +36,7 @@ Returns the shortest walk on the graph.
 
 def get_shortest_walk (filename):
     # retrieves graph from csv
-    # filename = "graph 1.csv"
+    # filename = "input_graph.csv"
     G = graph.retrieve_graph(filename)
 
     # deals with non-eulerian graph:
