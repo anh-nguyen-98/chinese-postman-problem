@@ -7,12 +7,8 @@ Chinese Postman Problem aims to find a shortest closed walk of the weighted grap
 "The (Chinese) Postman Problem, also called Postman Tour or Route Inspection Problem, is a famous problem in Graph Theory: The postman's job is to deliver all of the town's mail using the shortest route possible. In order to do so, he (or she) must pass each street once and then return to the origin."
 
 * Applications: 
-  * Node routing problems:
-    
-    – Meal delivery, inter-library loans, school-bus routing
-  *  Arc routing problems:
-   
-   – Waste collection, snow plowing, postal delivery route design
+  * Node routing problems: Meal delivery, inter-library loans, school-bus routing
+  *  Arc routing problems: Waste collection, snow plowing, postal delivery route design
 
 # Installation  
 - Install a Python editor (e.g. Pycharm, Visual Studio Code, Thonny)
@@ -31,14 +27,28 @@ git clone https://github.com/anh-nguyen-98/chinese-postman-problem.git
   - cell values are non-negative weight of the respective edges
    
 Example:
+![graph input](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/graph.jpg)
 
 - Run file *shortest_walk_client.py* in your editor 
 
 - Enter the name of your graph (.csv) in console: 
 
 Example:
+![console](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/input.jpg)
 
-- A Python turtle will visualize the shortest walk on your graph.  
+
+- A Python turtle will visualize the shortest walk on your graph: 
+  * Black edge: unvisted edge 
+  * Blue edge: edge visited once only 
+  * Red edge: edge visited more than once
+
+Example of a being-built tour: 
+
+![being built tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/building%20tour.jpg)
+
+Example of a complete tour: 
+
+![complete tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/complete%20tour.jpg)
 
 # Authors
 Nguyen Ba Hoc, Nguyen Hoang Nam Anh 
