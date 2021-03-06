@@ -6,7 +6,7 @@ author: Nguyen Ba Hoc, Nguyen Hoang Nam Anh
 import turtle
 import networkx as nx
 import numpy as np
-from graph_shortest_path.shortest_pairing import find_node_ids
+from shortest_pairing import find_node_ids
 
 """
 
@@ -49,6 +49,7 @@ def visualize_route(G):
             turtle.goto(coordinates[i][0] * 300, coordinates[i][1] * 300)
             visited += edge
 
+    turtle.Screen().exitonclick()
 
 """
 Param: G (Nx Multigraph) graph (edges already modified for non-eulerian)
