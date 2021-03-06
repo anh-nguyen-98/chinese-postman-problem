@@ -10,7 +10,7 @@ Chinese Postman Problem aims to find a shortest closed walk of the weighted grap
   * Node routing problems: Meal delivery, inter-library loans, school-bus routing
   *  Arc routing problems: Waste collection, snow plowing, postal delivery route design
 
-# Installation  
+## Installation  
 - Install a Python editor (e.g. Pycharm, Visual Studio Code, Thonny)
 - Clone the project at: 
 
@@ -20,7 +20,7 @@ git clone https://github.com/anh-nguyen-98/chinese-postman-problem.git
 - Open the project with the existing editor
 
 
-# Usage 
+## Usage 
 
 - Input your weighted graph's incidence matrix in a .csv file where: 
   - column and row names are vertices
@@ -50,15 +50,15 @@ Example of a complete tour:
 
 ![complete tour](https://github.com/anh-nguyen-98/chinese-postman-problem/blob/main/images/complete%20tour.jpg)
 
-# Authors
+## Authors
 Nguyen Ba Hoc, Nguyen Hoang Nam Anh 
 
-# Contributing 
+## Contributing 
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-# License 
+## License 
 
 
