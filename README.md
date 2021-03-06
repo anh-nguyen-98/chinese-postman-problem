@@ -1,6 +1,6 @@
-# Chinese Postman Problem (aka. Eulerian tour finding)
+# Chinese Postman Problem 
 
-* Chinese Postman Problem aims to find a shortest closed walk of the weighted graph in which each edge is traversed at least once, rather than exactly once. 
+Chinese Postman Problem aims to find a shortest closed walk of the weighted graph in which each edge is traversed at least once, rather than exactly once. 
 
 * Here is the original problem statement : 
 
@@ -8,14 +8,16 @@
 
 * Applications: 
   * Node routing problems:
+    
     – Meal delivery, inter-library loans, school-bus routing
   *  Arc routing problems:
-    – Waste collection, snow plowing, postal delivery route design
+   
+   – Waste collection, snow plowing, postal delivery route design
 
 # Installation  
 - Install a Python editor (e.g. Pycharm, Visual Studio Code, Thonny)
-- Clone the project: 
--
+- Clone the project at: 
+
 ```
 git clone https://github.com/anh-nguyen-98/chinese-postman-problem.git
 ```
